@@ -1,157 +1,160 @@
 import { validate } from 'class-validator';
-import { Request, Response } from "express";
-import { Section } from "../entity/Section";
-import { createSectionService, deleteSectionService, getSectionByIdService, getSectionService, updateSectionService } from '../services/section';
+import { Request, Response } from 'express';
+import { Section } from '../entity/Section';
+import {
+  createSectionService,
+  deleteSectionService,
+  getSectionByIdService,
+  getSectionService,
+  updateSectionService,
+} from '../services/section';
 import { Paginator } from '../utils/pagination';
 
 class SectionController {
+  static all = async (req: Request, res: Response) => {
+    const { page, per_page } = req.query;
 
-    static all = async (req: Request, res: Response) => {
-        const { page, per_page } = req.query;
+    try {
+      const entity: any = await getSectionService();
+      const result = await Paginator(entity, page, per_page);
 
-        try {
-            const entity: any = await getSectionService();
-            const result = await Paginator(entity, page, per_page);
+      return res.status(200).json({
+        success: true,
+        data: result,
+      });
+    } catch (error) {
+      return false;
+    }
+  };
 
-            return res.status(200).json({
-                success: true,
-                data: result
-            });
-        } catch (error) {
-            return false;
-        }
-    };
+  static getOneById = async (req: Request, res: Response) => {
+    const id: number = req.params.id;
+    const { name } = req.body;
 
-    static getOneById = async (req: Request, res: Response) => {
-        const id: number = req.params.id;
-        const { name } = req.body;
+    try {
+      const entity: any = await getSectionByIdService(id);
 
-        try {
-            const entity: any = await getSectionByIdService(id);
+      if (entity.success) {
+        return res.status(200).json({
+          success: entity.success,
+          data: entity.data,
+        });
+      } else {
+        return res.status(400).json({
+          success: entity.success,
+          msg: entity.msg,
+        });
+      }
+    } catch (error) {
+      return res.status(400).json({
+        success: false,
+        msg: error,
+      });
+    }
+  };
 
-            if (entity.success) {
-                return res.status(200).json({
-                    success: entity.success,
-                    data: entity.data
-                });
-            } else {
-                return res.status(400).json({
-                    success: entity.success,
-                    msg: entity.msg
-                });
-            }
+  static create = async (req: Request, res: Response) => {
+    let { name } = req.body;
 
-        } catch (error) {
-            return res.status(400).json({
-                success: false,
-                msg: error
-            });
-        }
-    };
+    // Create Entity Object
+    let section = new Section();
+    section.name = name;
 
-    static create = async (req: Request, res: Response) => {
-        let { name } = req.body;
+    const errors = await validate(section); // TODO:
 
-        // Create Entity Object
-        let section = new Section();
-        section.name = name;
+    if (errors.length > 0) {
+      res.status(400).send({
+        success: false,
+        msg: errors,
+      });
+      return;
+    }
 
-        const errors = await validate(section); // TODO:
+    try {
+      await createSectionService(section);
 
-        if (errors.length > 0) {
-            res.status(400).send({
-                success: false,
-                msg: errors
-            });
-            return;
-        }
+      return res.status(201).json({
+        success: true,
+      });
+    } catch (error) {
+      res.status(400).send({
+        success: false,
+        msg: 'something went wrong',
+      });
+      return;
+    }
+  };
 
-        try {
-            await createSectionService(section);
+  static update = async (req: Request, res: Response) => {
+    const id: number = req.params.id;
+    const { name } = req.body;
 
-            return res.status(201).json({
-                success: true
-            });
-        } catch (error) {
-            res.status(400).send({
-                success: false,
-                msg: "something went wrong"
-            });
-            return;
-        }
+    try {
+      const entity: any = await getSectionByIdService(id);
 
-    };
+      if (!entity.success) {
+        return res.status(400).json({
+          success: false,
+          msg: entity.msg,
+        });
+      }
 
-    static update = async (req: Request, res: Response) => {
-        const id: number = req.params.id;
-        const { name } = req.body;
+      let section: Section = entity.data;
+      section.name = name;
 
-        try {
-            const entity: any = await getSectionByIdService(id);
+      const errors = await validate(section);
 
-            if (!entity.success) {
-                return res.status(400).json({
-                    success: false,
-                    msg: entity.msg
-                });
-            }
+      if (errors.length > 0) {
+        res.status(400).send({
+          success: false,
+          msg: errors,
+        });
+        return;
+      }
 
-            let section: Section = entity.data;
-            section.name = name
+      await updateSectionService(section);
 
-            const errors = await validate(section);
+      return res.status(200).json({
+        success: true,
+      });
+    } catch (error) {
+      res.status(400).send({
+        success: false,
+        msg: 'something went wrong',
+      });
+      return;
+    }
+  };
 
-            if (errors.length > 0) {
-                res.status(400).send({
-                    success: false,
-                    msg: errors
-                });
-                return;
-            }
+  static delete = async (req: Request, res: Response) => {
+    //Send the users object
+    const id = req.params.id;
 
-            await updateSectionService(section);
+    try {
+      const entity: any = await getSectionByIdService(id);
 
-            return res.status(200).json({
-                success: true,
-            });
-        } catch (error) {
-            res.status(400).send({
-                success: false,
-                msg: "something went wrong"
-            });
-            return;
-        }
-    };
+      if (!entity.success) {
+        return res.status(400).json({
+          success: false,
+          msg: entity.msg,
+        });
+      }
 
-    static delete = async (req: Request, res: Response) => {
-        //Send the users object
-        const id = req.params.id;
+      await deleteSectionService(id);
 
-        try {
-            const entity: any = await getSectionByIdService(id);
+      return res.status(200).json({
+        success: true,
+      });
+    } catch (error) {
+      res.status(400).send({
+        success: false,
+        msg: 'something went wrong',
+      });
+      return;
+    }
 
-            if (!entity.success) {
-                return res.status(400).json({
-                    success: false,
-                    msg: entity.msg
-                });
-            }
-
-            await deleteSectionService(id);
-
-            return res.status(200).json({
-                success: true,
-            })
-        } catch (error) {
-            res.status(400).send({
-                success: false,
-                msg: "something went wrong"
-            });
-            return;
-        }
-
-        res.send('delete');
-    };
-};
+    res.send('delete');
+  };
+}
 
 export default SectionController;

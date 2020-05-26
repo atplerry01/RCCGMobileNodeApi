@@ -1,19 +1,19 @@
-import * as bodyParser from "body-parser";
-import * as cors from "cors";
-import * as dotenv from "dotenv";
-import * as express from "express";
-import * as helmet from "helmet";
+import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
+import * as dotenv from 'dotenv';
+import * as express from 'express';
+import * as helmet from 'helmet';
 import * as path from 'path';
-import "reflect-metadata";
-import { createConnection } from "typeorm";
-import routes from "./routes";
+import 'reflect-metadata';
+import { createConnection } from 'typeorm';
+import routes from './routes';
 
 dotenv.config();
 
-createConnection().then(async connection => {
-
+createConnection()
+  .then(async (connection) => {
     if (!process.env.PORT) {
-        process.exit(1);
+      process.exit(1);
     }
 
     const PORT: number = parseInt(process.env.PORT as string, 10);
@@ -25,7 +25,7 @@ createConnection().then(async connection => {
     app.use(helmet());
     app.use(bodyParser.json());
 
-    app.use("/api/", routes);
+    app.use('/api/', routes);
 
     // static www files use express
     // const wwwPath = path.join(__dirname, 'www');
@@ -34,7 +34,7 @@ createConnection().then(async connection => {
     app.set('view engine', 'html');
 
     app.listen(PORT, () => {
-        console.log(`🚀 Server ready at http://localhost:${PORT} for REST APIs`);
+      console.log(`🚀 Server ready at http://localhost:${PORT} for REST APIs`);
     });
-
-}).catch(error => console.log(error));
+  })
+  .catch((error) => console.log(error));

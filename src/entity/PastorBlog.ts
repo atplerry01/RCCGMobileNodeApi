@@ -1,12 +1,10 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity("pastorblog")
+@Entity('pastorblog')
 export class PastorBlog extends BaseEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
-
-    @Column()
-    name: string;
-
+  @Column()
+  name: string;
 }
