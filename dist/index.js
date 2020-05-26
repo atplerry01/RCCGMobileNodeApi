@@ -46,7 +46,8 @@ require("reflect-metadata");
 var typeorm_1 = require("typeorm");
 var routes_1 = require("./routes");
 dotenv.config();
-typeorm_1.createConnection().then(function (connection) { return __awaiter(void 0, void 0, void 0, function () {
+typeorm_1.createConnection()
+    .then(function (connection) { return __awaiter(void 0, void 0, void 0, function () {
     var PORT, app;
     return __generator(this, function (_a) {
         if (!process.env.PORT) {
@@ -58,7 +59,7 @@ typeorm_1.createConnection().then(function (connection) { return __awaiter(void 
         app.use(cors());
         app.use(helmet());
         app.use(bodyParser.json());
-        app.use("/api/", routes_1.default);
+        app.use('/api/', routes_1.default);
         // static www files use express
         // const wwwPath = path.join(__dirname, 'www');
         // app.use('/', express.static(wwwPath));
@@ -69,4 +70,5 @@ typeorm_1.createConnection().then(function (connection) { return __awaiter(void 
         });
         return [2 /*return*/];
     });
-}); }).catch(function (error) { return console.log(error); });
+}); })
+    .catch(function (error) { return console.log(error); });

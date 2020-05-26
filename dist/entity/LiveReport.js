@@ -29,7 +29,7 @@ var LiveReport = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn("uuid"),
+        typeorm_1.PrimaryGeneratedColumn('uuid'),
         __metadata("design:type", String)
     ], LiveReport.prototype, "id", void 0);
     __decorate([
@@ -37,7 +37,7 @@ var LiveReport = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], LiveReport.prototype, "name", void 0);
     LiveReport = __decorate([
-        typeorm_1.Entity("livereport")
+        typeorm_1.Entity('livereport')
     ], LiveReport);
     return LiveReport;
 }(typeorm_1.BaseEntity));

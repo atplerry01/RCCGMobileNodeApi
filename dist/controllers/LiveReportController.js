@@ -60,7 +60,7 @@ var LiveReportController = /** @class */ (function () {
                     result = _b.sent();
                     return [2 /*return*/, res.status(200).json({
                             success: true,
-                            result: result
+                            result: result,
                         })];
                 case 4:
                     error_1 = _b.sent();
@@ -85,13 +85,13 @@ var LiveReportController = /** @class */ (function () {
                     if (entity.success) {
                         return [2 /*return*/, res.status(200).json({
                                 success: entity.success,
-                                data: entity.data
+                                data: entity.data,
                             })];
                     }
                     else {
                         return [2 /*return*/, res.status(400).json({
                                 success: entity.success,
-                                msg: entity.msg
+                                msg: entity.msg,
                             })];
                     }
                     return [3 /*break*/, 4];
@@ -99,7 +99,7 @@ var LiveReportController = /** @class */ (function () {
                     error_2 = _a.sent();
                     return [2 /*return*/, res.status(400).json({
                             success: false,
-                            msg: error_2
+                            msg: error_2,
                         })];
                 case 4: return [2 /*return*/];
             }
@@ -119,7 +119,7 @@ var LiveReportController = /** @class */ (function () {
                     if (errors.length > 0) {
                         res.status(400).send({
                             success: false,
-                            msg: errors
+                            msg: errors,
                         });
                         return [2 /*return*/];
                     }
@@ -130,13 +130,13 @@ var LiveReportController = /** @class */ (function () {
                 case 3:
                     _a.sent();
                     return [2 /*return*/, res.status(201).json({
-                            success: true
+                            success: true,
                         })];
                 case 4:
                     error_3 = _a.sent();
                     res.status(400).send({
                         success: false,
-                        msg: "something went wrong"
+                        msg: 'something went wrong',
                     });
                     return [2 /*return*/];
                 case 5: return [2 /*return*/];
@@ -159,7 +159,7 @@ var LiveReportController = /** @class */ (function () {
                     if (!entity.success) {
                         return [2 /*return*/, res.status(400).json({
                                 success: false,
-                                msg: entity.msg
+                                msg: entity.msg,
                             })];
                     }
                     liveReport = entity.data;
@@ -170,7 +170,7 @@ var LiveReportController = /** @class */ (function () {
                     if (errors.length > 0) {
                         res.status(400).send({
                             success: false,
-                            msg: errors
+                            msg: errors,
                         });
                         return [2 /*return*/];
                     }
@@ -184,7 +184,7 @@ var LiveReportController = /** @class */ (function () {
                     error_4 = _a.sent();
                     res.status(400).send({
                         success: false,
-                        msg: "something went wrong"
+                        msg: 'something went wrong',
                     });
                     return [2 /*return*/];
                 case 6: return [2 /*return*/];
@@ -206,7 +206,7 @@ var LiveReportController = /** @class */ (function () {
                     if (!entity.success) {
                         return [2 /*return*/, res.status(400).json({
                                 success: false,
-                                msg: entity.msg
+                                msg: entity.msg,
                             })];
                     }
                     return [4 /*yield*/, LiveReport_1.deleteLiveReportService(id)];
@@ -219,7 +219,7 @@ var LiveReportController = /** @class */ (function () {
                     error_5 = _a.sent();
                     res.status(400).send({
                         success: false,
-                        msg: "something went wrong"
+                        msg: 'something went wrong',
                     });
                     return [2 /*return*/];
                 case 5: return [2 /*return*/];
@@ -228,5 +228,4 @@ var LiveReportController = /** @class */ (function () {
     }); };
     return LiveReportController;
 }());
-;
 exports.default = LiveReportController;

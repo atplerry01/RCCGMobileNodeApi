@@ -29,7 +29,7 @@ var PastorBlog = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn("uuid"),
+        typeorm_1.PrimaryGeneratedColumn('uuid'),
         __metadata("design:type", String)
     ], PastorBlog.prototype, "id", void 0);
     __decorate([
@@ -37,7 +37,7 @@ var PastorBlog = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], PastorBlog.prototype, "name", void 0);
     PastorBlog = __decorate([
-        typeorm_1.Entity("pastorblog")
+        typeorm_1.Entity('pastorblog')
     ], PastorBlog);
     return PastorBlog;
 }(typeorm_1.BaseEntity));

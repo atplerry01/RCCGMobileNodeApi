@@ -55,5 +55,4 @@ var TestController = /** @class */ (function () {
     }); };
     return TestController;
 }());
-;
 exports.default = TestController;

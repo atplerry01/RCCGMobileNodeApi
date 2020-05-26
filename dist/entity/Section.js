@@ -29,7 +29,7 @@ var Section = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn("uuid"),
+        typeorm_1.PrimaryGeneratedColumn('uuid'),
         __metadata("design:type", String)
     ], Section.prototype, "id", void 0);
     __decorate([
@@ -37,7 +37,7 @@ var Section = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], Section.prototype, "name", void 0);
     Section = __decorate([
-        typeorm_1.Entity("section")
+        typeorm_1.Entity('section')
     ], Section);
     return Section;
 }(typeorm_1.BaseEntity));

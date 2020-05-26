@@ -4,7 +4,7 @@ var jwt = require("jsonwebtoken");
 var config_1 = require("../utils/config");
 exports.checkJwt = function (req, res, next) {
     //Get the jwt token from the head
-    var token = req.headers["auth"];
+    var token = req.headers['auth'];
     var jwtPayload;
     //Try to validate the token and get data
     try {
@@ -20,9 +20,9 @@ exports.checkJwt = function (req, res, next) {
     //We want to send a new token on every request
     var userId = jwtPayload.userId, username = jwtPayload.username;
     var newToken = jwt.sign({ userId: userId, username: username }, config_1.default.jwtSecret, {
-        expiresIn: "1h"
+        expiresIn: '1h',
     });
-    res.setHeader("token", newToken);
+    res.setHeader('token', newToken);
     //Call the next middleware or controller
     next();
 };

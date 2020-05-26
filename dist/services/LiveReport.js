@@ -53,7 +53,7 @@ exports.getLiveReportService = function () { return __awaiter(void 0, void 0, vo
                             return [2 /*return*/, resolve(entities)];
                         case 2:
                             err_1 = _a.sent();
-                            return [2 /*return*/, reject({ err: err_1, message: "No entity found" })];
+                            return [2 /*return*/, reject({ err: err_1, message: 'No entity found' })];
                         case 3: return [2 /*return*/];
                     }
                 });
@@ -79,7 +79,7 @@ exports.getLiveReportByIdService = function (Id) { return __awaiter(void 0, void
                 error_1 = _b.sent();
                 return [2 /*return*/, {
                         success: false,
-                        msg: "Entity not found"
+                        msg: 'Entity not found',
                     }];
             case 4: return [2 /*return*/];
         }

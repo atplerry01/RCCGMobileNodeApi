@@ -5,7 +5,7 @@
    "scripts": {
       "start": "nodemon --exec ts-node src/index.ts",
       "clean": "rimraf ./dist",
-      "build": "rimraf ./dist && tsc -b",
+      "build": "npm run clean && rimraf ./dist && tsc -b && npm run copy-static-assets",
       "build2": "rimraf ./dist && tsc -b && npm run copy-static-assets",
       "copy-static-assets": "node copyStaticAssets.js",
       "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
@@ -40,6 +40,7 @@
       "jsonwebtoken": "^8.5.1",
       "mysql": "^2.18.1",
       "reflect-metadata": "^0.1.13",
+      "shelljs": "^0.8.4",
       "ts-node-dev": "^1.0.0-pre.44",
       "typeorm": "^0.2.24",
       "uuid": "^8.0.0"

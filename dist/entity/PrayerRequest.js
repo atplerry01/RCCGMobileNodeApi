@@ -29,7 +29,7 @@ var PrayerRequest = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn("uuid"),
+        typeorm_1.PrimaryGeneratedColumn('uuid'),
         __metadata("design:type", String)
     ], PrayerRequest.prototype, "id", void 0);
     __decorate([
@@ -37,7 +37,7 @@ var PrayerRequest = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], PrayerRequest.prototype, "name", void 0);
     PrayerRequest = __decorate([
-        typeorm_1.Entity("prayerrequest")
+        typeorm_1.Entity('prayerrequest')
     ], PrayerRequest);
     return PrayerRequest;
 }(typeorm_1.BaseEntity));

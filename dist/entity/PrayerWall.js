@@ -29,7 +29,7 @@ var PrayerWall = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
-        typeorm_1.PrimaryGeneratedColumn("uuid"),
+        typeorm_1.PrimaryGeneratedColumn('uuid'),
         __metadata("design:type", String)
     ], PrayerWall.prototype, "id", void 0);
     __decorate([
@@ -37,7 +37,7 @@ var PrayerWall = /** @class */ (function (_super) {
         __metadata("design:type", String)
     ], PrayerWall.prototype, "name", void 0);
     PrayerWall = __decorate([
-        typeorm_1.Entity("prayerwall")
+        typeorm_1.Entity('prayerwall')
     ], PrayerWall);
     return PrayerWall;
 }(typeorm_1.BaseEntity));
