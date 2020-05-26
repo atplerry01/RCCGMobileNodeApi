@@ -2,12 +2,31 @@
    "name": "RCCGTour.Api2",
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
+   "scripts": {
+      "start": "nodemon --exec ts-node src/index.ts",
+      "clean": "rimraf ./dist",
+      "build": "rimraf ./dist && tsc -b",
+      "build2": "rimraf ./dist && tsc -b && npm run copy-static-assets",
+      "copy-static-assets": "node copyStaticAssets.js",
+      "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+      "lint": "tslint -p tsconfig.json",
+      "preversion": "npm run lint",
+      "version": "npm run format && git add -A src",
+      "postversion": "git add -A src && git push && git push --tags"
+   },
+   "repositry": {
+      "type": "git",
+      "url": "https://github.com/atplerry01/RCCGMobileNodeApi.git"
+   },
    "devDependencies": {
       "@types/dotenv": "^8.2.0",
       "@types/node": "^13.13.4",
       "copyfiles": "^2.2.0",
+      "prettier": "^2.0.5",
       "shell": "^0.5.0",
       "ts-node": "8.9.1",
+      "tslint": "^6.1.2",
+      "tslint-config-prettier": "^1.18.0",
       "typescript": "3.8.3"
    },
    "dependencies": {
@@ -24,12 +43,5 @@
       "ts-node-dev": "^1.0.0-pre.44",
       "typeorm": "^0.2.24",
       "uuid": "^8.0.0"
-   },
-   "scripts": {
-      "start": "nodemon --exec ts-node src/index.ts",
-      "clean": "rimraf ./dist",
-      "build": "rimraf ./dist && tsc -b",
-      "build2": "rimraf ./dist && tsc -b && npm run copy-static-assets",
-      "copy-static-assets": "node copyStaticAssets.js"
    }
 }

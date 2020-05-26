@@ -10,6 +10,8 @@
       "outDir": "./dist",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
-      "sourceMap": false
-   }
+      "sourceMap": false,
+   },
+   "include": ["src"],
+   "exclude": ["node_modules"]
 }
