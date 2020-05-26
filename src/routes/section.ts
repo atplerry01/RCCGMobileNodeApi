@@ -4,9 +4,9 @@ import SectionController from "../controllers/SectionController";
 const router = Router();
 
 router.get("/", SectionController.all);
-router.get("/:id([0-9]+)", SectionController.getOneById);
+router.get("/:id", SectionController.getOneById);
 router.post("/", SectionController.create);
-router.patch("/:id([0-9]+)", SectionController.update);
-router.delete("/:id([0-9]+)", SectionController.delete);
+router.patch("/:id", SectionController.update);
+router.delete("/:id", SectionController.delete);
 
 export default router;

@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var PrayerWallController_1 = require("../controllers/PrayerWallController");
+var router = express_1.Router();
+router.get("/", PrayerWallController_1.default.all);
+router.get("/:id", PrayerWallController_1.default.getOneById);
+router.post("/", PrayerWallController_1.default.create);
+router.patch("/:id", PrayerWallController_1.default.update);
+router.delete("/:id", PrayerWallController_1.default.delete);
+exports.default = router;

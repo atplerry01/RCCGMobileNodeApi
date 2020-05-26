@@ -3,7 +3,10 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
+      "@types/dotenv": "^8.2.0",
       "@types/node": "^13.13.4",
+      "copyfiles": "^2.2.0",
+      "shell": "^0.5.0",
       "ts-node": "8.9.1",
       "typescript": "3.8.3"
    },
@@ -12,6 +15,7 @@
       "body-parser": "^1.19.0",
       "class-validator": "^0.12.2",
       "cors": "^2.8.5",
+      "dotenv": "^8.2.0",
       "express": "^4.17.1",
       "helmet": "^3.22.0",
       "jsonwebtoken": "^8.5.1",
@@ -22,6 +26,10 @@
       "uuid": "^8.0.0"
    },
    "scripts": {
-      "start": "nodemon --exec ts-node src/index.ts"
+      "start": "nodemon --exec ts-node src/index.ts",
+      "clean": "rimraf ./dist",
+      "build": "rimraf ./dist && tsc -b",
+      "build2": "rimraf ./dist && tsc -b && npm run copy-static-assets",
+      "copy-static-assets": "node copyStaticAssets.js"
    }
 }

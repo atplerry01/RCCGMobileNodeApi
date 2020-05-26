@@ -1,10 +1,10 @@
 import { getConnection, getRepository } from "typeorm";
-import { Section } from './../entity/Section';
+import { PastorBlog } from './../entity/PastorBlog';
 
-export const getSectionService = async () => {
+export const getPastorBlogService = async () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const q = `SELECT * FROM rccgmobile.section`;
+            const q = `SELECT * FROM rccgmobile.pastorblog`;
             const entities = await getConnection().query(q);
             return resolve(entities);
         } catch (err) {
@@ -13,8 +13,8 @@ export const getSectionService = async () => {
     });
 };
 
-export const getSectionByIdService = async (Id) => {
-    const entityRepository = getRepository(Section);
+export const getPastorBlogByIdService = async (Id) => {
+    const entityRepository = getRepository(PastorBlog);
     try {
         return {
             success: true,
@@ -28,17 +28,17 @@ export const getSectionByIdService = async (Id) => {
     }
 };
 
-export const createSectionService = async (entity) => {
-    const entityRepository = getRepository(Section);
+export const createPastorBlogService = async (entity) => {
+    const entityRepository = getRepository(PastorBlog);
     return await entityRepository.save(entity);
 };
 
-export const updateSectionService = async (entity) => {
-    const entityRepository = getRepository(Section);
+export const updatePastorBlogService = async (entity) => {
+    const entityRepository = getRepository(PastorBlog);
     return await entityRepository.save(entity);
 };
 
-export const deleteSectionService = async (id) => {
-    const entityRepository = getRepository(Section);
+export const deletePastorBlogService = async (id) => {
+    const entityRepository = getRepository(PastorBlog);
     return await entityRepository.delete(id);
 };

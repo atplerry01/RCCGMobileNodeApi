@@ -1,14 +1,18 @@
 import { Router } from "express";
-import hotspot from "./hotspot";
+import livereport from "./livereport";
+import pastorblog from "./pastorblog";
+import prayerrequest from "./prayerrequest";
+import prayerwall from "./prayerwall";
 import section from "./section";
-import subsection from "./subsection";
 import test from "./test";
 
 const routes = Router();
 
 routes.use("/tests", test);
+routes.use("/livereport", livereport);
+routes.use("/pastorblog", pastorblog);
+routes.use("/prayerrequest", prayerrequest);
+routes.use("/prayerwall", prayerwall);
 routes.use("/sections", section);
-routes.use("/subsections", subsection);
-routes.use("/hotspots", hotspot);
 
 export default routes;

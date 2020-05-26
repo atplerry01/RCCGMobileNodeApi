@@ -1,21 +1,21 @@
 import { validate } from 'class-validator';
 import { Request, Response } from "express";
-import { Section } from "../entity/Section";
-import { createSectionService, deleteSectionService, getSectionByIdService, getSectionService, updateSectionService } from '../services/section';
+import { createLiveReportService, deleteLiveReportService, getLiveReportByIdService, getLiveReportService, updateLiveReportService } from '../services/LiveReport';
 import { Paginator } from '../utils/pagination';
+import { LiveReport } from './../entity/LiveReport';
 
-class SectionController {
+class LiveReportController {
 
     static all = async (req: Request, res: Response) => {
         const { page, per_page } = req.query;
 
         try {
-            const entity: any = await getSectionService();
+            const entity: any = await getLiveReportService();
             const result = await Paginator(entity, page, per_page);
 
             return res.status(200).json({
                 success: true,
-                data: result
+                result: result
             });
         } catch (error) {
             return false;
@@ -27,7 +27,7 @@ class SectionController {
         const { name } = req.body;
 
         try {
-            const entity: any = await getSectionByIdService(id);
+            const entity: any = await getLiveReportByIdService(id);
 
             if (entity.success) {
                 return res.status(200).json({
@@ -53,10 +53,10 @@ class SectionController {
         let { name } = req.body;
 
         // Create Entity Object
-        let section = new Section();
-        section.name = name;
+        let liveReport = new LiveReport()
+        liveReport.name = name;
 
-        const errors = await validate(section); // TODO:
+        const errors = await validate(LiveReport); // TODO:
 
         if (errors.length > 0) {
             res.status(400).send({
@@ -67,7 +67,7 @@ class SectionController {
         }
 
         try {
-            await createSectionService(section);
+            await createLiveReportService(LiveReport);
 
             return res.status(201).json({
                 success: true
@@ -87,7 +87,7 @@ class SectionController {
         const { name } = req.body;
 
         try {
-            const entity: any = await getSectionByIdService(id);
+            const entity: any = await getLiveReportByIdService(id);
 
             if (!entity.success) {
                 return res.status(400).json({
@@ -96,10 +96,10 @@ class SectionController {
                 });
             }
 
-            let section: Section = entity.data;
-            section.name = name
+            let liveReport: LiveReport = entity.data;
+            liveReport.name = name
 
-            const errors = await validate(section);
+            const errors = await validate(LiveReport);
 
             if (errors.length > 0) {
                 res.status(400).send({
@@ -109,7 +109,7 @@ class SectionController {
                 return;
             }
 
-            await updateSectionService(section);
+            await updateLiveReportService(LiveReport);
 
             return res.status(200).json({
                 success: true,
@@ -128,7 +128,7 @@ class SectionController {
         const id = req.params.id;
 
         try {
-            const entity: any = await getSectionByIdService(id);
+            const entity: any = await getLiveReportByIdService(id);
 
             if (!entity.success) {
                 return res.status(400).json({
@@ -137,7 +137,7 @@ class SectionController {
                 });
             }
 
-            await deleteSectionService(id);
+            await deleteLiveReportService(id);
 
             return res.status(200).json({
                 success: true,
@@ -149,9 +149,7 @@ class SectionController {
             });
             return;
         }
-
-        res.send('delete');
     };
 };
 
-export default SectionController;
+export default LiveReportController;

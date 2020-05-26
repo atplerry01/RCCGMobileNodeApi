@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var livereport_1 = require("./livereport");
+var pastorblog_1 = require("./pastorblog");
+var prayerrequest_1 = require("./prayerrequest");
+var prayerwall_1 = require("./prayerwall");
+var section_1 = require("./section");
+var test_1 = require("./test");
+var routes = express_1.Router();
+routes.use("/tests", test_1.default);
+routes.use("/livereport", livereport_1.default);
+routes.use("/pastorblog", pastorblog_1.default);
+routes.use("/prayerrequest", prayerrequest_1.default);
+routes.use("/prayerwall", prayerwall_1.default);
+routes.use("/sections", section_1.default);
+exports.default = routes;

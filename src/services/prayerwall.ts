@@ -1,10 +1,10 @@
 import { getConnection, getRepository } from "typeorm";
-import { Section } from './../entity/Section';
+import { PrayerWall } from './../entity/PrayerWall';
 
-export const getSectionService = async () => {
+export const getPrayerWallService = async () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const q = `SELECT * FROM rccgmobile.section`;
+            const q = `SELECT * FROM rccgmobile.prayerwall`;
             const entities = await getConnection().query(q);
             return resolve(entities);
         } catch (err) {
@@ -13,8 +13,8 @@ export const getSectionService = async () => {
     });
 };
 
-export const getSectionByIdService = async (Id) => {
-    const entityRepository = getRepository(Section);
+export const getPrayerWallByIdService = async (Id) => {
+    const entityRepository = getRepository(PrayerWall);
     try {
         return {
             success: true,
@@ -28,17 +28,17 @@ export const getSectionByIdService = async (Id) => {
     }
 };
 
-export const createSectionService = async (entity) => {
-    const entityRepository = getRepository(Section);
+export const createPrayerWallService = async (entity) => {
+    const entityRepository = getRepository(PrayerWall);
     return await entityRepository.save(entity);
 };
 
-export const updateSectionService = async (entity) => {
-    const entityRepository = getRepository(Section);
+export const updatePrayerWallService = async (entity) => {
+    const entityRepository = getRepository(PrayerWall);
     return await entityRepository.save(entity);
 };
 
-export const deleteSectionService = async (id) => {
-    const entityRepository = getRepository(Section);
+export const deletePrayerWallService = async (id) => {
+    const entityRepository = getRepository(PrayerWall);
     return await entityRepository.delete(id);
 };

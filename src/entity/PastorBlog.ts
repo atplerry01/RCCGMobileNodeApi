@@ -1,9 +1,9 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("section")
-export class Section extends BaseEntity {
+@Entity("pastorblog")
+export class PastorBlog extends BaseEntity {
 
-    @PrimaryGeneratedColumn("uuid") 
+    @PrimaryGeneratedColumn("uuid")
     id: string;
 
     @Column()
