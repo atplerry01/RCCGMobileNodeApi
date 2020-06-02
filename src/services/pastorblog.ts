@@ -4,7 +4,7 @@ import { PastorBlog } from './../entity/PastorBlog';
 export const getPastorBlogService = async () => {
   return new Promise(async (resolve, reject) => {
     try {
-      const q = `SELECT * FROM rccgmobile.pastorblog`;
+      const q = `SELECT * FROM rccgmobile.pastorblog order by requestDate desc`;
       const entities = await getConnection().query(q);
       return resolve(entities);
     } catch (err) {

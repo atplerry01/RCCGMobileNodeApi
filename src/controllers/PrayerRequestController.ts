@@ -58,7 +58,7 @@ class PrayerRequestController {
 
     // Create Entity Object
     let prayerRequest = new PrayerRequest();
-    prayerRequest.name = name;
+    // prayerRequest.name = name;
 
     const errors = await validate(PrayerRequest); // TODO:
 
@@ -100,7 +100,7 @@ class PrayerRequestController {
       }
 
       let prayerRequest: PrayerRequest = entity.data;
-      prayerRequest.name = name;
+      // prayerRequest.name = name;
 
       const errors = await validate(PrayerRequest);
 

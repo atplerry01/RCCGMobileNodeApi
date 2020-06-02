@@ -1,16 +1,11 @@
 import { validate } from 'class-validator';
 import { Request, Response } from 'express';
-import {
-  createLiveReportService,
-  deleteLiveReportService,
-  getLiveReportByIdService,
-  getLiveReportService,
-  updateLiveReportService,
-} from '../services/LiveReport';
+import { createLiveReportService, deleteLiveReportService, getLiveReportByIdService, getLiveReportService, updateLiveReportService } from '../services/LiveReport';
 import { Paginator } from '../utils/pagination';
 import { LiveReport } from './../entity/LiveReport';
 
 class LiveReportController {
+
   static all = async (req: Request, res: Response) => {
     const { page, per_page } = req.query;
 
@@ -54,13 +49,18 @@ class LiveReportController {
   };
 
   static create = async (req: Request, res: Response) => {
-    let { name } = req.body;
+    const { title, summary, reportType, imagePath, thumbImagePath } = req.body;
 
     // Create Entity Object
-    let liveReport = new LiveReport();
-    liveReport.name = name;
+    const liveReport = new LiveReport();
 
-    const errors = await validate(LiveReport); // TODO:
+    liveReport.title = title;
+    liveReport.summary = summary;
+    liveReport.reportType = reportType;
+    liveReport.imagePath = imagePath;
+    liveReport.thumbImagePath = thumbImagePath;
+
+    const errors = await validate(liveReport); // TODO:
 
     if (errors.length > 0) {
       res.status(400).send({
@@ -71,7 +71,7 @@ class LiveReportController {
     }
 
     try {
-      await createLiveReportService(LiveReport);
+      await createLiveReportService(liveReport);
 
       return res.status(201).json({
         success: true,
@@ -87,7 +87,7 @@ class LiveReportController {
 
   static update = async (req: Request, res: Response) => {
     const id: number = req.params.id;
-    const { name } = req.body;
+    const { title, summary, reportType, imagePath, thumbImagePath } = req.body;
 
     try {
       const entity: any = await getLiveReportByIdService(id);
@@ -99,10 +99,16 @@ class LiveReportController {
         });
       }
 
-      let liveReport: LiveReport = entity.data;
-      liveReport.name = name;
+      const liveReport: LiveReport = entity.data;
+      // liveReport.name = name;
 
-      const errors = await validate(LiveReport);
+      liveReport.title = title;
+      liveReport.summary = summary;
+      liveReport.reportType = reportType;
+      liveReport.imagePath = imagePath;
+      liveReport.thumbImagePath = thumbImagePath;
+
+      const errors = await validate(liveReport);
 
       if (errors.length > 0) {
         res.status(400).send({
@@ -112,7 +118,7 @@ class LiveReportController {
         return;
       }
 
-      await updateLiveReportService(LiveReport);
+      await updateLiveReportService(liveReport);
 
       return res.status(200).json({
         success: true,

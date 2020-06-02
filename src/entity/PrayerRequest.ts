@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('prayerrequest')
 export class PrayerRequest extends BaseEntity {
@@ -6,5 +6,17 @@ export class PrayerRequest extends BaseEntity {
   id: string;
 
   @Column()
-  name: string;
+  title: string;
+
+  @Column()
+  details: string;
+
+  @Column()
+  parishName: string;
+
+  @Column({ default: 0})
+  viewCount: number;
+
+  @CreateDateColumn({ type: "timestamp" })
+  requestDate: Date;
 }

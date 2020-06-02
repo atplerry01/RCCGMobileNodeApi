@@ -1,13 +1,7 @@
 import { validate } from 'class-validator';
 import { Request, Response } from 'express';
 import { PrayerWall } from '../entity/PrayerWall';
-import {
-  createPrayerWallService,
-  deletePrayerWallService,
-  getPrayerWallByIdService,
-  getPrayerWallService,
-  updatePrayerWallService,
-} from '../services/PrayerWall';
+import { createPrayerWallService, deletePrayerWallService, getPrayerWallByIdService, getPrayerWallService, updatePrayerWallService } from '../services/PrayerWall';
 import { Paginator } from '../utils/pagination';
 
 class PrayerWallController {
@@ -54,13 +48,16 @@ class PrayerWallController {
   };
 
   static create = async (req: Request, res: Response) => {
-    let { name } = req.body;
+    const { title, summary, details, parishName } = req.body;
 
     // Create Entity Object
-    let prayerWall = new PrayerWall();
-    prayerWall.name = name;
+    const prayerWall = new PrayerWall();
+    prayerWall.title = title;
+    prayerWall.summary = summary;
+    prayerWall.details = details;
+    prayerWall.parishName = parishName;
 
-    const errors = await validate(PrayerWall); // TODO:
+    const errors = await validate(prayerWall); // TODO:
 
     if (errors.length > 0) {
       res.status(400).send({
@@ -71,7 +68,7 @@ class PrayerWallController {
     }
 
     try {
-      await createPrayerWallService(PrayerWall);
+      await createPrayerWallService(prayerWall);
 
       return res.status(201).json({
         success: true,
@@ -87,7 +84,7 @@ class PrayerWallController {
 
   static update = async (req: Request, res: Response) => {
     const id: number = req.params.id;
-    const { name } = req.body;
+    const { title, summary, details, parishName } = req.body;
 
     try {
       const entity: any = await getPrayerWallByIdService(id);
@@ -99,10 +96,14 @@ class PrayerWallController {
         });
       }
 
-      let prayerWall: PrayerWall = entity.data;
-      prayerWall.name = name;
+      const prayerWall: PrayerWall = entity.data;
 
-      const errors = await validate(PrayerWall);
+      prayerWall.title = title;
+      prayerWall.summary = summary;
+      prayerWall.details = details;
+      prayerWall.parishName = parishName;
+
+      const errors = await validate(prayerWall);
 
       if (errors.length > 0) {
         res.status(400).send({
@@ -112,10 +113,10 @@ class PrayerWallController {
         return;
       }
 
-      await updatePrayerWallService(PrayerWall);
+      await updatePrayerWallService(prayerWall);
 
       return res.status(200).json({
-        success: true,
+        success: true
       });
     } catch (error) {
       res.status(400).send({

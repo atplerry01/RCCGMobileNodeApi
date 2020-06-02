@@ -1,13 +1,7 @@
 import { validate } from 'class-validator';
 import { Request, Response } from 'express';
 import { PastorBlog } from '../entity/PastorBlog';
-import {
-  createPastorBlogService,
-  deletePastorBlogService,
-  getPastorBlogByIdService,
-  getPastorBlogService,
-  updatePastorBlogService,
-} from '../services/PastorBlog';
+import { createPastorBlogService, deletePastorBlogService, getPastorBlogByIdService, getPastorBlogService, updatePastorBlogService } from '../services/PastorBlog';
 import { Paginator } from '../utils/pagination';
 
 class PastorBlogController {
@@ -54,13 +48,19 @@ class PastorBlogController {
   };
 
   static create = async (req: Request, res: Response) => {
-    let { name } = req.body;
+    const { subject, blogger, summary, details, parishName, imagePath, thumbImagePath } = req.body;
 
     // Create Entity Object
-    let pastorBlog = new PastorBlog();
-    pastorBlog.name = name;
+    const pastorBlog = new PastorBlog();
+    pastorBlog.subject = subject;
+    pastorBlog.blogger = blogger;
+    pastorBlog.summary = summary;
+    pastorBlog.details = details;
+    pastorBlog.parishName = parishName;
+    pastorBlog.imagePath = imagePath;
+    pastorBlog.thumbImagePath = thumbImagePath;
 
-    const errors = await validate(PastorBlog); // TODO:
+    const errors = await validate(pastorBlog); // TODO:
 
     if (errors.length > 0) {
       res.status(400).send({
@@ -71,7 +71,7 @@ class PastorBlogController {
     }
 
     try {
-      await createPastorBlogService(PastorBlog);
+      await createPastorBlogService(pastorBlog);
 
       return res.status(201).json({
         success: true,
@@ -87,7 +87,7 @@ class PastorBlogController {
 
   static update = async (req: Request, res: Response) => {
     const id: number = req.params.id;
-    const { name } = req.body;
+    const { subject, blogger, summary, details, imagePath, thumbImagePath } = req.body;
 
     try {
       const entity: any = await getPastorBlogByIdService(id);
@@ -99,10 +99,16 @@ class PastorBlogController {
         });
       }
 
-      let pastorBlog: PastorBlog = entity.data;
-      pastorBlog.name = name;
+      const pastorBlog: PastorBlog = entity.data;
 
-      const errors = await validate(PastorBlog);
+      pastorBlog.subject = subject;
+      pastorBlog.blogger = blogger;
+      pastorBlog.summary = summary;
+      pastorBlog.details = details;
+      pastorBlog.imagePath = imagePath;
+      pastorBlog.thumbImagePath = thumbImagePath;
+
+      const errors = await validate(pastorBlog);
 
       if (errors.length > 0) {
         res.status(400).send({
@@ -112,7 +118,7 @@ class PastorBlogController {
         return;
       }
 
-      await updatePastorBlogService(PastorBlog);
+      await updatePastorBlogService(pastorBlog);
 
       return res.status(200).json({
         success: true,
@@ -127,7 +133,6 @@ class PastorBlogController {
   };
 
   static delete = async (req: Request, res: Response) => {
-    //Send the users object
     const id = req.params.id;
 
     try {

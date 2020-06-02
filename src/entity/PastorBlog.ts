@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('pastorblog')
 export class PastorBlog extends BaseEntity {
@@ -6,5 +6,29 @@ export class PastorBlog extends BaseEntity {
   id: string;
 
   @Column()
-  name: string;
+  subject: string;
+
+  @Column()
+  blogger: string;
+
+  @Column()
+  summary: string;
+
+  @Column()
+  details: string;
+
+  @Column()
+  imagePath: string;
+
+  @Column()
+  thumbImagePath: string;
+
+  @Column()
+  parishName: string;
+
+  @Column({ default: 0 })
+  viewCount: number;
+
+  @CreateDateColumn({ type: "timestamp" })
+  requestDate: Date;
 }

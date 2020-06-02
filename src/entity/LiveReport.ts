@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 
 @Entity('livereport')
 export class LiveReport extends BaseEntity {
@@ -6,5 +6,23 @@ export class LiveReport extends BaseEntity {
   id: string;
 
   @Column()
-  name: string;
+  title: string;
+
+  @Column()
+  summary: string;
+
+  @Column()
+  reportType: string;
+
+  @Column()
+  imagePath: string;
+
+  @Column()
+  thumbImagePath: string;
+
+  @Column({ default: 0 })
+  viewCount: number;
+
+  @CreateDateColumn({ type: "timestamp" })
+  requestDate: Date;
 }
