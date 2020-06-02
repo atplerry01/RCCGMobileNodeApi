@@ -35,7 +35,23 @@ var PrayerRequest = /** @class */ (function (_super) {
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", String)
-    ], PrayerRequest.prototype, "name", void 0);
+    ], PrayerRequest.prototype, "title", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PrayerRequest.prototype, "details", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PrayerRequest.prototype, "parishName", void 0);
+    __decorate([
+        typeorm_1.Column({ default: 0 }),
+        __metadata("design:type", Number)
+    ], PrayerRequest.prototype, "viewCount", void 0);
+    __decorate([
+        typeorm_1.CreateDateColumn({ type: "timestamp" }),
+        __metadata("design:type", Date)
+    ], PrayerRequest.prototype, "requestDate", void 0);
     PrayerRequest = __decorate([
         typeorm_1.Entity('prayerrequest')
     ], PrayerRequest);

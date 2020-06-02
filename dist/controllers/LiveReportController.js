@@ -106,16 +106,20 @@ var LiveReportController = /** @class */ (function () {
         });
     }); };
     LiveReportController.create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var name, liveReport, errors, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, title, summary, reportType, imagePath, thumbImagePath, liveReport, errors, error_3;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    name = req.body.name;
+                    _a = req.body, title = _a.title, summary = _a.summary, reportType = _a.reportType, imagePath = _a.imagePath, thumbImagePath = _a.thumbImagePath;
                     liveReport = new LiveReport_2.LiveReport();
-                    liveReport.name = name;
-                    return [4 /*yield*/, class_validator_1.validate(LiveReport_2.LiveReport)];
+                    liveReport.title = title;
+                    liveReport.summary = summary;
+                    liveReport.reportType = reportType;
+                    liveReport.imagePath = imagePath;
+                    liveReport.thumbImagePath = thumbImagePath;
+                    return [4 /*yield*/, class_validator_1.validate(liveReport)];
                 case 1:
-                    errors = _a.sent();
+                    errors = _b.sent();
                     if (errors.length > 0) {
                         res.status(400).send({
                             success: false,
@@ -123,17 +127,17 @@ var LiveReportController = /** @class */ (function () {
                         });
                         return [2 /*return*/];
                     }
-                    _a.label = 2;
+                    _b.label = 2;
                 case 2:
-                    _a.trys.push([2, 4, , 5]);
-                    return [4 /*yield*/, LiveReport_1.createLiveReportService(LiveReport_2.LiveReport)];
+                    _b.trys.push([2, 4, , 5]);
+                    return [4 /*yield*/, LiveReport_1.createLiveReportService(liveReport)];
                 case 3:
-                    _a.sent();
+                    _b.sent();
                     return [2 /*return*/, res.status(201).json({
                             success: true,
                         })];
                 case 4:
-                    error_3 = _a.sent();
+                    error_3 = _b.sent();
                     res.status(400).send({
                         success: false,
                         msg: 'something went wrong',
@@ -144,18 +148,18 @@ var LiveReportController = /** @class */ (function () {
         });
     }); };
     LiveReportController.update = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var id, name, entity, liveReport, errors, error_4;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var id, _a, title, summary, reportType, imagePath, thumbImagePath, entity, liveReport, errors, error_4;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     id = req.params.id;
-                    name = req.body.name;
-                    _a.label = 1;
+                    _a = req.body, title = _a.title, summary = _a.summary, reportType = _a.reportType, imagePath = _a.imagePath, thumbImagePath = _a.thumbImagePath;
+                    _b.label = 1;
                 case 1:
-                    _a.trys.push([1, 5, , 6]);
+                    _b.trys.push([1, 5, , 6]);
                     return [4 /*yield*/, LiveReport_1.getLiveReportByIdService(id)];
                 case 2:
-                    entity = _a.sent();
+                    entity = _b.sent();
                     if (!entity.success) {
                         return [2 /*return*/, res.status(400).json({
                                 success: false,
@@ -163,10 +167,15 @@ var LiveReportController = /** @class */ (function () {
                             })];
                     }
                     liveReport = entity.data;
-                    liveReport.name = name;
-                    return [4 /*yield*/, class_validator_1.validate(LiveReport_2.LiveReport)];
+                    // liveReport.name = name;
+                    liveReport.title = title;
+                    liveReport.summary = summary;
+                    liveReport.reportType = reportType;
+                    liveReport.imagePath = imagePath;
+                    liveReport.thumbImagePath = thumbImagePath;
+                    return [4 /*yield*/, class_validator_1.validate(liveReport)];
                 case 3:
-                    errors = _a.sent();
+                    errors = _b.sent();
                     if (errors.length > 0) {
                         res.status(400).send({
                             success: false,
@@ -174,14 +183,14 @@ var LiveReportController = /** @class */ (function () {
                         });
                         return [2 /*return*/];
                     }
-                    return [4 /*yield*/, LiveReport_1.updateLiveReportService(LiveReport_2.LiveReport)];
+                    return [4 /*yield*/, LiveReport_1.updateLiveReportService(liveReport)];
                 case 4:
-                    _a.sent();
+                    _b.sent();
                     return [2 /*return*/, res.status(200).json({
                             success: true,
                         })];
                 case 5:
-                    error_4 = _a.sent();
+                    error_4 = _b.sent();
                     res.status(400).send({
                         success: false,
                         msg: 'something went wrong',

@@ -35,7 +35,39 @@ var PastorBlog = /** @class */ (function (_super) {
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", String)
-    ], PastorBlog.prototype, "name", void 0);
+    ], PastorBlog.prototype, "subject", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PastorBlog.prototype, "blogger", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PastorBlog.prototype, "summary", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PastorBlog.prototype, "details", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PastorBlog.prototype, "imagePath", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PastorBlog.prototype, "thumbImagePath", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PastorBlog.prototype, "parishName", void 0);
+    __decorate([
+        typeorm_1.Column({ default: 0 }),
+        __metadata("design:type", Number)
+    ], PastorBlog.prototype, "viewCount", void 0);
+    __decorate([
+        typeorm_1.CreateDateColumn({ type: "timestamp" }),
+        __metadata("design:type", Date)
+    ], PastorBlog.prototype, "requestDate", void 0);
     PastorBlog = __decorate([
         typeorm_1.Entity('pastorblog')
     ], PastorBlog);

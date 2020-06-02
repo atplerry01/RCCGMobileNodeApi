@@ -48,23 +48,37 @@ var routes_1 = require("./routes");
 dotenv.config();
 typeorm_1.createConnection()
     .then(function (connection) { return __awaiter(void 0, void 0, void 0, function () {
-    var PORT, app;
+    var PORT, app, morgan;
     return __generator(this, function (_a) {
         if (!process.env.PORT) {
             process.exit(1);
         }
         PORT = parseInt(process.env.PORT, 10);
         app = express();
+        if (process.env.NODE_ENV === "development") {
+            morgan = require('morgan');
+            app.use(morgan('dev'));
+        }
         // Call midlewares
         app.use(cors());
         app.use(helmet());
-        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: true }));
+        app.use(bodyParser.json({
+            limit: '50mb'
+        }));
         app.use('/api/', routes_1.default);
         // static www files use express
         // const wwwPath = path.join(__dirname, 'www');
         // app.use('/', express.static(wwwPath));
         app.use(express.static(path.join(__dirname, 'www')));
         app.set('view engine', 'html');
+        // handle global exceptions
+        process.on('uncaughtException', function (err) {
+            console.error('global exception:', err.message);
+        });
+        process.on('unhandledRejection', function (reason, _promise) {
+            console.error('unhandled promise rejection:', reason.message || reason);
+        });
         app.listen(PORT, function () {
             console.log("\uD83D\uDE80 Server ready at http://localhost:" + PORT + " for REST APIs");
         });

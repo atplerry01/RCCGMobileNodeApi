@@ -35,7 +35,31 @@ var LiveReport = /** @class */ (function (_super) {
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", String)
-    ], LiveReport.prototype, "name", void 0);
+    ], LiveReport.prototype, "title", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], LiveReport.prototype, "summary", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], LiveReport.prototype, "reportType", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], LiveReport.prototype, "imagePath", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], LiveReport.prototype, "thumbImagePath", void 0);
+    __decorate([
+        typeorm_1.Column({ default: 0 }),
+        __metadata("design:type", Number)
+    ], LiveReport.prototype, "viewCount", void 0);
+    __decorate([
+        typeorm_1.CreateDateColumn({ type: "timestamp" }),
+        __metadata("design:type", Date)
+    ], LiveReport.prototype, "requestDate", void 0);
     LiveReport = __decorate([
         typeorm_1.Entity('livereport')
     ], LiveReport);

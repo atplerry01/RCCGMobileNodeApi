@@ -46,7 +46,7 @@ exports.getPastorBlogService = function () { return __awaiter(void 0, void 0, vo
                     switch (_a.label) {
                         case 0:
                             _a.trys.push([0, 2, , 3]);
-                            q = "SELECT * FROM rccgmobile.pastorblog";
+                            q = "SELECT * FROM rccgmobile.pastorblog order by requestDate desc";
                             return [4 /*yield*/, typeorm_1.getConnection().query(q)];
                         case 1:
                             entities = _a.sent();

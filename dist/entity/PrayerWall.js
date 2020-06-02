@@ -35,7 +35,27 @@ var PrayerWall = /** @class */ (function (_super) {
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", String)
-    ], PrayerWall.prototype, "name", void 0);
+    ], PrayerWall.prototype, "title", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PrayerWall.prototype, "summary", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PrayerWall.prototype, "details", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], PrayerWall.prototype, "parishName", void 0);
+    __decorate([
+        typeorm_1.Column({ default: 0 }),
+        __metadata("design:type", Number)
+    ], PrayerWall.prototype, "viewCount", void 0);
+    __decorate([
+        typeorm_1.CreateDateColumn({ type: "timestamp" }),
+        __metadata("design:type", Date)
+    ], PrayerWall.prototype, "requestDate", void 0);
     PrayerWall = __decorate([
         typeorm_1.Entity('prayerwall')
     ], PrayerWall);

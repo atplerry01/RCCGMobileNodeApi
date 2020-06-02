@@ -106,16 +106,19 @@ var PrayerWallController = /** @class */ (function () {
         });
     }); };
     PrayerWallController.create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var name, prayerWall, errors, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, title, summary, details, parishName, prayerWall, errors, error_3;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    name = req.body.name;
+                    _a = req.body, title = _a.title, summary = _a.summary, details = _a.details, parishName = _a.parishName;
                     prayerWall = new PrayerWall_1.PrayerWall();
-                    prayerWall.name = name;
-                    return [4 /*yield*/, class_validator_1.validate(PrayerWall_1.PrayerWall)];
+                    prayerWall.title = title;
+                    prayerWall.summary = summary;
+                    prayerWall.details = details;
+                    prayerWall.parishName = parishName;
+                    return [4 /*yield*/, class_validator_1.validate(prayerWall)];
                 case 1:
-                    errors = _a.sent();
+                    errors = _b.sent();
                     if (errors.length > 0) {
                         res.status(400).send({
                             success: false,
@@ -123,17 +126,17 @@ var PrayerWallController = /** @class */ (function () {
                         });
                         return [2 /*return*/];
                     }
-                    _a.label = 2;
+                    _b.label = 2;
                 case 2:
-                    _a.trys.push([2, 4, , 5]);
-                    return [4 /*yield*/, PrayerWall_2.createPrayerWallService(PrayerWall_1.PrayerWall)];
+                    _b.trys.push([2, 4, , 5]);
+                    return [4 /*yield*/, PrayerWall_2.createPrayerWallService(prayerWall)];
                 case 3:
-                    _a.sent();
+                    _b.sent();
                     return [2 /*return*/, res.status(201).json({
                             success: true,
                         })];
                 case 4:
-                    error_3 = _a.sent();
+                    error_3 = _b.sent();
                     res.status(400).send({
                         success: false,
                         msg: 'something went wrong',
@@ -144,18 +147,18 @@ var PrayerWallController = /** @class */ (function () {
         });
     }); };
     PrayerWallController.update = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var id, name, entity, prayerWall, errors, error_4;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var id, _a, title, summary, details, parishName, entity, prayerWall, errors, error_4;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     id = req.params.id;
-                    name = req.body.name;
-                    _a.label = 1;
+                    _a = req.body, title = _a.title, summary = _a.summary, details = _a.details, parishName = _a.parishName;
+                    _b.label = 1;
                 case 1:
-                    _a.trys.push([1, 5, , 6]);
+                    _b.trys.push([1, 5, , 6]);
                     return [4 /*yield*/, PrayerWall_2.getPrayerWallByIdService(id)];
                 case 2:
-                    entity = _a.sent();
+                    entity = _b.sent();
                     if (!entity.success) {
                         return [2 /*return*/, res.status(400).json({
                                 success: false,
@@ -163,10 +166,13 @@ var PrayerWallController = /** @class */ (function () {
                             })];
                     }
                     prayerWall = entity.data;
-                    prayerWall.name = name;
-                    return [4 /*yield*/, class_validator_1.validate(PrayerWall_1.PrayerWall)];
+                    prayerWall.title = title;
+                    prayerWall.summary = summary;
+                    prayerWall.details = details;
+                    prayerWall.parishName = parishName;
+                    return [4 /*yield*/, class_validator_1.validate(prayerWall)];
                 case 3:
-                    errors = _a.sent();
+                    errors = _b.sent();
                     if (errors.length > 0) {
                         res.status(400).send({
                             success: false,
@@ -174,14 +180,14 @@ var PrayerWallController = /** @class */ (function () {
                         });
                         return [2 /*return*/];
                     }
-                    return [4 /*yield*/, PrayerWall_2.updatePrayerWallService(PrayerWall_1.PrayerWall)];
+                    return [4 /*yield*/, PrayerWall_2.updatePrayerWallService(prayerWall)];
                 case 4:
-                    _a.sent();
+                    _b.sent();
                     return [2 /*return*/, res.status(200).json({
-                            success: true,
+                            success: true
                         })];
                 case 5:
-                    error_4 = _a.sent();
+                    error_4 = _b.sent();
                     res.status(400).send({
                         success: false,
                         msg: 'something went wrong',

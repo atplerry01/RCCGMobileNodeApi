@@ -106,16 +106,22 @@ var PastorBlogController = /** @class */ (function () {
         });
     }); };
     PastorBlogController.create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var name, pastorBlog, errors, error_3;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, subject, blogger, summary, details, parishName, imagePath, thumbImagePath, pastorBlog, errors, error_3;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    name = req.body.name;
+                    _a = req.body, subject = _a.subject, blogger = _a.blogger, summary = _a.summary, details = _a.details, parishName = _a.parishName, imagePath = _a.imagePath, thumbImagePath = _a.thumbImagePath;
                     pastorBlog = new PastorBlog_1.PastorBlog();
-                    pastorBlog.name = name;
-                    return [4 /*yield*/, class_validator_1.validate(PastorBlog_1.PastorBlog)];
+                    pastorBlog.subject = subject;
+                    pastorBlog.blogger = blogger;
+                    pastorBlog.summary = summary;
+                    pastorBlog.details = details;
+                    pastorBlog.parishName = parishName;
+                    pastorBlog.imagePath = imagePath;
+                    pastorBlog.thumbImagePath = thumbImagePath;
+                    return [4 /*yield*/, class_validator_1.validate(pastorBlog)];
                 case 1:
-                    errors = _a.sent();
+                    errors = _b.sent();
                     if (errors.length > 0) {
                         res.status(400).send({
                             success: false,
@@ -123,17 +129,17 @@ var PastorBlogController = /** @class */ (function () {
                         });
                         return [2 /*return*/];
                     }
-                    _a.label = 2;
+                    _b.label = 2;
                 case 2:
-                    _a.trys.push([2, 4, , 5]);
-                    return [4 /*yield*/, PastorBlog_2.createPastorBlogService(PastorBlog_1.PastorBlog)];
+                    _b.trys.push([2, 4, , 5]);
+                    return [4 /*yield*/, PastorBlog_2.createPastorBlogService(pastorBlog)];
                 case 3:
-                    _a.sent();
+                    _b.sent();
                     return [2 /*return*/, res.status(201).json({
                             success: true,
                         })];
                 case 4:
-                    error_3 = _a.sent();
+                    error_3 = _b.sent();
                     res.status(400).send({
                         success: false,
                         msg: 'something went wrong',
@@ -144,18 +150,18 @@ var PastorBlogController = /** @class */ (function () {
         });
     }); };
     PastorBlogController.update = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var id, name, entity, pastorBlog, errors, error_4;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var id, _a, subject, blogger, summary, details, imagePath, thumbImagePath, entity, pastorBlog, errors, error_4;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     id = req.params.id;
-                    name = req.body.name;
-                    _a.label = 1;
+                    _a = req.body, subject = _a.subject, blogger = _a.blogger, summary = _a.summary, details = _a.details, imagePath = _a.imagePath, thumbImagePath = _a.thumbImagePath;
+                    _b.label = 1;
                 case 1:
-                    _a.trys.push([1, 5, , 6]);
+                    _b.trys.push([1, 5, , 6]);
                     return [4 /*yield*/, PastorBlog_2.getPastorBlogByIdService(id)];
                 case 2:
-                    entity = _a.sent();
+                    entity = _b.sent();
                     if (!entity.success) {
                         return [2 /*return*/, res.status(400).json({
                                 success: false,
@@ -163,10 +169,15 @@ var PastorBlogController = /** @class */ (function () {
                             })];
                     }
                     pastorBlog = entity.data;
-                    pastorBlog.name = name;
-                    return [4 /*yield*/, class_validator_1.validate(PastorBlog_1.PastorBlog)];
+                    pastorBlog.subject = subject;
+                    pastorBlog.blogger = blogger;
+                    pastorBlog.summary = summary;
+                    pastorBlog.details = details;
+                    pastorBlog.imagePath = imagePath;
+                    pastorBlog.thumbImagePath = thumbImagePath;
+                    return [4 /*yield*/, class_validator_1.validate(pastorBlog)];
                 case 3:
-                    errors = _a.sent();
+                    errors = _b.sent();
                     if (errors.length > 0) {
                         res.status(400).send({
                             success: false,
@@ -174,14 +185,14 @@ var PastorBlogController = /** @class */ (function () {
                         });
                         return [2 /*return*/];
                     }
-                    return [4 /*yield*/, PastorBlog_2.updatePastorBlogService(PastorBlog_1.PastorBlog)];
+                    return [4 /*yield*/, PastorBlog_2.updatePastorBlogService(pastorBlog)];
                 case 4:
-                    _a.sent();
+                    _b.sent();
                     return [2 /*return*/, res.status(200).json({
                             success: true,
                         })];
                 case 5:
-                    error_4 = _a.sent();
+                    error_4 = _b.sent();
                     res.status(400).send({
                         success: false,
                         msg: 'something went wrong',

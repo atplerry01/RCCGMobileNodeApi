@@ -112,7 +112,6 @@ var PrayerRequestController = /** @class */ (function () {
                 case 0:
                     name = req.body.name;
                     prayerRequest = new PrayerRequest_1.PrayerRequest();
-                    prayerRequest.name = name;
                     return [4 /*yield*/, class_validator_1.validate(PrayerRequest_1.PrayerRequest)];
                 case 1:
                     errors = _a.sent();
@@ -163,7 +162,6 @@ var PrayerRequestController = /** @class */ (function () {
                             })];
                     }
                     prayerRequest = entity.data;
-                    prayerRequest.name = name;
                     return [4 /*yield*/, class_validator_1.validate(PrayerRequest_1.PrayerRequest)];
                 case 3:
                     errors = _a.sent();
