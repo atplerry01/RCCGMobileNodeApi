@@ -2,6 +2,7 @@
    "name": "RCCGTour.Api2",
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
+   "type": "module",
    "scripts": {
       "start": "ts-node src/index.ts"
    },
