@@ -7,7 +7,7 @@ import {
   getSectionByIdService,
   getSectionService,
   updateSectionService,
-} from '../services/section';
+} from './../services/section';
 import { Paginator } from '../utils/pagination';
 
 class SectionController {

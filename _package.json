@@ -3,7 +3,16 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "scripts": {
-      "start": "nodemon --exec ts-node src/index.ts"
+      "start": "nodemon --exec ts-node src/index.ts",
+      "clean": "rimraf ./dist",
+      "build": "npm run clean && rimraf ./dist && tsc -b && npm run copy-static-assets",
+      "build2": "rimraf ./dist && tsc -b && npm run copy-static-assets",
+      "copy-static-assets": "node copyStaticAssets.js",
+      "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+      "lint": "tslint -p tsconfig.json",
+      "preversion": "npm run lint",
+      "version": "npm run format && git add -A src",
+      "postversion": "git add -A src && git push && git push --tags"
    },
    "repositry": {
       "type": "git",

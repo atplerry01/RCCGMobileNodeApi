@@ -1,8 +1,8 @@
 import { validate } from 'class-validator';
 import { Request, Response } from 'express';
 import { PrayerWall } from '../entity/PrayerWall';
-import { createPrayerWallService, deletePrayerWallService, getPrayerWallByIdService, getPrayerWallService, updatePrayerWallService } from '../services/PrayerWall';
 import { Paginator } from '../utils/pagination';
+import { createPrayerWallService, deletePrayerWallService, getPrayerWallByIdService, getPrayerWallService, updatePrayerWallService } from './../services/PrayerWall';
 
 class PrayerWallController {
   static all = async (req: Request, res: Response) => {

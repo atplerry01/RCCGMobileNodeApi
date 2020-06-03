@@ -1,8 +1,8 @@
 import { validate } from 'class-validator';
 import { Request, Response } from 'express';
-import { createLiveReportService, deleteLiveReportService, getLiveReportByIdService, getLiveReportService, updateLiveReportService } from '../services/LiveReport';
 import { Paginator } from '../utils/pagination';
 import { LiveReport } from './../entity/LiveReport';
+import { createLiveReportService, deleteLiveReportService, getLiveReportByIdService, getLiveReportService, updateLiveReportService } from './../services/livereport';
 
 class LiveReportController {
 

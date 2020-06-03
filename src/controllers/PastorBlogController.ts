@@ -1,7 +1,7 @@
 import { validate } from 'class-validator';
 import { Request, Response } from 'express';
 import { PastorBlog } from '../entity/PastorBlog';
-import { createPastorBlogService, deletePastorBlogService, getPastorBlogByIdService, getPastorBlogService, updatePastorBlogService } from '../services/PastorBlog';
+import { createPastorBlogService, deletePastorBlogService, getPastorBlogByIdService, getPastorBlogService, updatePastorBlogService } from './../services/PastorBlog';
 import { Paginator } from '../utils/pagination';
 
 class PastorBlogController {
