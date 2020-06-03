@@ -11,6 +11,9 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": false,
+      "types": [
+         "node"
+       ]
    },
    "include": [
       "src",

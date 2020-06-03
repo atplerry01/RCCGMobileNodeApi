@@ -17,7 +17,7 @@ createConnection()
       process.exit(1);
     }
 
-    const PORT: number = parseInt(process.env.PORT as string, 10);
+    const PORT = process.env.PORT || 5000 // parseInt(process.env.PORT as string, 10);
 
     const app = express();
     
@@ -55,5 +55,6 @@ createConnection()
     });
 
   })
-
-  .catch((error) => console.log(error));
+  .catch((error) => {
+    // console.log(error)
+  });
