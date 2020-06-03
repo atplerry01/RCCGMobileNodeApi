@@ -3,7 +3,7 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "scripts": {
-      "start": "nodemon --exec ts-node src/index.ts"
+      "start": "ts-node src/index.ts"
    },
    "repositry": {
       "type": "git",
